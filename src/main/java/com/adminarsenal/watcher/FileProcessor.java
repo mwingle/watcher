@@ -1,7 +1,6 @@
 package com.adminarsenal.watcher;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.text.MessageFormat;
 import java.util.Map;
 import java.util.Scanner;
@@ -32,13 +31,17 @@ public class FileProcessor extends Thread {
                     lineCount = 0;
                     try {
                         if (file.canRead()) {
-                            Scanner s = new Scanner(file);
-                            s.useDelimiter("\r\n");
-                            while (s.hasNextLine()) {
-                                s.nextLine();
-                                lineCount++;
+                            BufferedReader br = new BufferedReader(new FileReader(file));
+                            try {
+                                while (br.ready()) {
+                                    br.readLine();
+                                    lineCount++;
+                                }
+                                System.out.println(MessageFormat.format("Error reading file {0}", file.getName()));
+                                br.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
-                            s.close();
                             synchronized (fileList) {
 
                                 FileInfo cachedFile = fileList.get(file.getName());
