@@ -2,20 +2,13 @@ package com.adminarsenal.watcher;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.text.MessageFormat;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * You may use C#, VB, or Java to implement the project. Zip up your implementation sources into a single file.
  * In this exercise you will create a command-line program to watch for text files to be created or modified in a directory and then output information about them.
- *
+ * <p/>
  * - The program takes 2 arguments, the directory to watch and a file pattern, example: program.exe "c:file folder" *.txt
  * - The path may be an absolute path, relative to the current directory, or UNC.
  * - Use the modified date of the file as a trigger that the file has changed.
@@ -40,14 +33,17 @@ public class FileWatcher {
 
     public static void main(String[] args) {
         if (args.length == 0 || args.length > 2) {
+            System.out.println("args = " + Arrays.toString(args));
             System.out.println("FileWatcher - this program keeps an eye out for changes to the files in the specified directory");
-            System.out.println("Usage:  FileWatcher directory [extension]");
+            System.out.println("Usage:  FileWatcher \"directory\" [\"extension\"] <i>use quotes to avoid globbing</i>");
+            System.exit(-1);
         }
 
         String path = args[0];
 
         path = path.replaceAll("\\\\", "/");
 
+/*
         if (path.indexOf("////") >= 0) {
             path.replaceAll("\\\\", "//");
             if (!path.toUpperCase().startsWith("FILE:")) {
@@ -63,10 +59,13 @@ public class FileWatcher {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("directoryURI = " + path);
-            directory = new File(path);
+*/
+        System.out.println("directoryURI = " + path);
+        directory = new File(path);
 
+/*
         }
+*/
 
         if (!directory.exists()) {
             System.out.println("Directory " + directory + " does not exist.");
@@ -121,8 +120,10 @@ public class FileWatcher {
                 FileInfo cachedFileInfo = fileList.get(newFile.getName());
 
                 //only start a thread if the file has been added or modified
-                if (cachedFileInfo == null || newFile.lastModified() != cachedFileInfo.lastModified) {
-                    new FileProcessor(newFile, fileList).start();
+                if (newFile.isFile()) {
+                    if (cachedFileInfo == null || newFile.lastModified() != cachedFileInfo.lastModified) {
+                        new FileProcessor(newFile, fileList).start();
+                    }
                 }
             }
         }
