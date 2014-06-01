@@ -87,6 +87,7 @@ class FileProcessor extends Thread {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                processed = true; //break out of the loop
             }
         }
     }
