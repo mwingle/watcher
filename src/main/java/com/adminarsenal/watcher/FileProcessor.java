@@ -36,7 +36,9 @@ class FileProcessor extends Thread {
                             } catch (UnsupportedEncodingException e) {
                                 System.out.println("UTF-8 is not supported by this installation");
                                 e.printStackTrace();
+                                System.exit(-1);
                             }
+
                             try {
                                 while (lnr.ready()) {
                                     lnr.readLine();
