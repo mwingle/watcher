@@ -37,6 +37,7 @@ public class FileProcessor extends Thread {
                                 s.nextLine();
                                 lineCount++;
                             }
+                            s.close();
                             synchronized (fileList) {
 
                                 FileInfo cachedFile = fileList.get(file.getName());
@@ -48,6 +49,7 @@ public class FileProcessor extends Thread {
                                 } else if (cachedFile.lastModified != newFile.lastModified) {
                                     System.out.println(MessageFormat.format("File {0} was modified, and now has {1,number,#} lines [ {2,number,+#;-#} line(s) ]", file.getName(), lineCount, newFile.lineCount - cachedFile.lineCount));
                                 }
+
 
                                 fileList.put(newFile.fileName, newFile);
 
