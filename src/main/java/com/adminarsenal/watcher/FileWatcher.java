@@ -36,7 +36,7 @@ public class FileWatcher {
             System.out.println("args = " + Arrays.toString(args));
             System.out.println("FileWatcher - this program keeps an eye out for changes to the files in the specified directory");
             System.out.println("Usage:  FileWatcher \"directory\" [\"extension\"]");
-            System.out.println("*use quotes to avoid globbing*");
+            System.out.println("**use quotes around arguments to avoid globbing**");
             System.exit(-1);
         }
 
@@ -44,29 +44,8 @@ public class FileWatcher {
 
         path = path.replaceAll("\\\\", "/");
 
-/*
-        if (path.indexOf("////") >= 0) {
-            path.replaceAll("\\\\", "//");
-            if (!path.toUpperCase().startsWith("FILE:")) {
-                path = "file:" + path;
-            }
-
-            System.out.println("directoryURI = " + path);
-            try {
-                directory = Paths.get(new URL(path).toURI()).toFile();
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-        } else {
-*/
         System.out.println("directoryURI = " + path);
         directory = new File(path);
-
-/*
-        }
-*/
 
         if (!directory.exists()) {
             System.out.println("Directory " + directory + " does not exist.");
