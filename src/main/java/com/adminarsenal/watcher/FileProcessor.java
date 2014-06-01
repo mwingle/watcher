@@ -3,7 +3,6 @@ package com.adminarsenal.watcher;
 import java.io.*;
 import java.text.MessageFormat;
 import java.util.Map;
-import java.util.Scanner;
 
 class FileProcessor extends Thread {
 
