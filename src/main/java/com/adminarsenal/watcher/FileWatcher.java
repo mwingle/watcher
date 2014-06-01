@@ -23,13 +23,13 @@ import java.util.*;
  */
 public class FileWatcher {
 
-    public static int TIME_TO_WAIT_MILLIS = 1000 * 10;
+    public static final int TIME_TO_WAIT_MILLIS = 1000 * 10;
 
-    static Map<String, FileInfo> fileList = Collections.synchronizedMap(new HashMap<String, FileInfo>());
+    private static final Map<String, FileInfo> fileList = Collections.synchronizedMap(new HashMap<String, FileInfo>());
 
-    static File directory;
-    static String pattern;
-    static FilenameFilter filenameFilter;
+    private static File directory;
+    private static String pattern;
+    private static FilenameFilter filenameFilter;
 
     public static void main(String[] args) {
         if (args.length == 0 || args.length > 2) {

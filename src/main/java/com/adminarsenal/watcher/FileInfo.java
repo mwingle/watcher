@@ -1,6 +1,6 @@
 package com.adminarsenal.watcher;
 
-public class FileInfo {
+class FileInfo {
 
     public FileInfo(String fileName, long lastModified, long lineCount) {
         this.fileName = fileName;
@@ -8,8 +8,8 @@ public class FileInfo {
         this.lineCount = lineCount;
     }
 
-    String fileName;
-    long lastModified;
-    long lineCount;
+    final String fileName;
+    final long lastModified;
+    final long lineCount;
 
 }

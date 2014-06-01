@@ -5,11 +5,11 @@ import java.text.MessageFormat;
 import java.util.Map;
 import java.util.Scanner;
 
-public class FileProcessor extends Thread {
+class FileProcessor extends Thread {
 
-    File file;
+    private final File file;
 
-    Map<String, FileInfo> fileList;
+    private final Map<String, FileInfo> fileList;
 
     public FileProcessor(File f, Map<String, FileInfo> fl) {
         file = f;
