@@ -33,6 +33,7 @@ public class FileProcessor extends Thread {
                     try {
                         if (file.canRead()) {
                             Scanner s = new Scanner(file);
+                            s.useDelimiter("\r\n");
                             while (s.hasNextLine()) {
                                 s.nextLine();
                                 lineCount++;
