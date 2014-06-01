@@ -35,7 +35,8 @@ public class FileWatcher {
         if (args.length == 0 || args.length > 2) {
             System.out.println("args = " + Arrays.toString(args));
             System.out.println("FileWatcher - this program keeps an eye out for changes to the files in the specified directory");
-            System.out.println("Usage:  FileWatcher \"directory\" [\"extension\"] <i>use quotes to avoid globbing</i>");
+            System.out.println("Usage:  FileWatcher \"directory\" [\"extension\"]");
+            System.out.println("*use quotes to avoid globbing*");
             System.exit(-1);
         }
 
