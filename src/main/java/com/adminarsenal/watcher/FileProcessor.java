@@ -30,7 +30,13 @@ class FileProcessor extends Thread {
                     lineCount = 0;
                     try {
                         if (file.canRead()) {
-                            LineNumberReader lnr = new LineNumberReader(new FileReader(file));
+                            LineNumberReader lnr = null;
+                            try {
+                                lnr = new LineNumberReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+                            } catch (UnsupportedEncodingException e) {
+                                System.out.println("UTF-8 is not supported by this installation");
+                                e.printStackTrace();
+                            }
                             try {
                                 while (lnr.ready()) {
                                     lnr.readLine();
