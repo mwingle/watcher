@@ -31,13 +31,13 @@ class FileProcessor extends Thread {
                     lineCount = 0;
                     try {
                         if (file.canRead()) {
-                            BufferedReader br = new BufferedReader(new FileReader(file));
+                            LineNumberReader lnr = new LineNumberReader(new FileReader(file));
                             try {
-                                while (br.ready()) {
-                                    br.readLine();
+                                while (lnr.ready()) {
+                                    lnr.readLine();
                                     lineCount++;
                                 }
-                                br.close();
+                                lnr.close();
                             } catch (IOException e) {
                                 System.out.println(MessageFormat.format("Error reading file {0}", file.getName()));
                                 e.printStackTrace();
