@@ -42,8 +42,6 @@ public class FileWatcher {
 
         String path = args[0];
 
-        path = path.replaceAll("\\\\", "/");
-
         System.out.println("directoryURI = " + path);
         directory = new File(path);
 
