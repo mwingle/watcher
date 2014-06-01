@@ -37,9 +37,9 @@ public class FileProcessor extends Thread {
                                     br.readLine();
                                     lineCount++;
                                 }
-                                System.out.println(MessageFormat.format("Error reading file {0}", file.getName()));
                                 br.close();
                             } catch (IOException e) {
+                                System.out.println(MessageFormat.format("Error reading file {0}", file.getName()));
                                 e.printStackTrace();
                             }
                             synchronized (fileList) {
