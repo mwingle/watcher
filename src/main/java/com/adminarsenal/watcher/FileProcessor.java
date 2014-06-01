@@ -68,6 +68,8 @@ class FileProcessor extends Thread {
 
                             processed = true;
 
+                        } else {
+                            System.out.println(MessageFormat.format("{0} is not readable.  Retrying...", file.getName()));
                         }
                     } catch (FileNotFoundException e) {
                         System.out.println("Error while processing file: ");
